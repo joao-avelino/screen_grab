@@ -4,6 +4,10 @@
   <arg name="update_rate" default="10" />
   <arg name="use_image_show" default="true" />
   <arg name="use_image_view" default="false" />
+  <arg name="x_offset" default="0"/>
+  <arg name="y_offset" default="0"/>
+  <arg name="width" default="500"/>
+  <arg name="height" default="500"/>
 
   <node name="nodelet_manager" pkg="nodelet" type="nodelet" 
       args="manager" output="screen" />
@@ -11,10 +15,10 @@
   <node name="screen_grab" pkg="nodelet" type="nodelet"
       args="load screen_grab/ScreenGrab nodelet_manager" output="screen" >
     <param name="update_rate" value="$(arg update_rate)" />
-    <param name="x_offset" value="50" />
-    <param name="y_offset" value="50" />
-    <param name="width" value="500" />
-    <param name="height" value="500" />
+    <param name="x_offset" value="$(arg x_offset)" />
+    <param name="y_offset" value="$(arg y_offset)" />
+    <param name="width" value="$(arg width)" />
+    <param name="height" value="$(arg height)" />
   </node>
 
   <!-- image show takes much less cpu that image_view -->

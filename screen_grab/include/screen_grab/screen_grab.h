@@ -37,13 +37,16 @@
 #include <screen_grab/ScreenGrabConfig.h>
 #include <sensor_msgs/RegionOfInterest.h>
 #include <X11/Xlib.h>
+#include <image_transport/image_transport.h>
 
 namespace screen_grab
 {
 
 class ScreenGrab : public nodelet::Nodelet
 {
-  ros::Publisher screen_pub_;
+  ros::NodeHandle nh;
+  image_transport::ImageTransport it;
+  image_transport::Publisher screen_pub_;
 
   ros::Subscriber roi_sub_;
   void roiCallback(const sensor_msgs::RegionOfInterest::ConstPtr& msg);

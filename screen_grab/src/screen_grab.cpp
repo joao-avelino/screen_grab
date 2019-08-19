@@ -79,6 +79,8 @@ namespace screen_grab
 {
 
 ScreenGrab::ScreenGrab() :
+  nh(),
+  it(nh),
   x_offset_(0),
   y_offset_(0),
   width_(640),
@@ -174,8 +176,8 @@ void ScreenGrab::updateConfig()
 
 void ScreenGrab::onInit()
 {
-  screen_pub_ = getNodeHandle().advertise<sensor_msgs::Image>(
-                  "image", 5);
+  screen_pub_ = it.advertise("screen_grab/image", 1);
+
   // TODO(lucasw) move most of this into onInit
   // init
   // from vimjay screencap.cpp (https://github.com/lucasw/vimjay)
